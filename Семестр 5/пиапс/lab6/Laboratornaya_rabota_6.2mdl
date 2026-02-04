@@ -1,0 +1,404 @@
+{UTF-8}
+testing rate=
+	(Work done-Live)/testing delay
+	~	requirements/Hour
+	~		|
+
+Live= INTEG (
+	testing rate,
+		0)
+	~	requirements
+	~		|
+
+benefits of keeping things simple=
+	IF THEN ELSE(type switch<>2, 0.05,0)
+	~	1/Hour
+	~		|
+
+bug introduced during development=
+	Random Normal (0.0071, 0.0095, 0.0083, 0.0012, 0)
+	~	1/Hour
+	~		|
+
+delay= INTEG (
+	IF THEN ELSE (MODULO(Time, 84) = 0, Time + scrum retrospect delay + Scrum sprint planning delay
+		 - delay, 0) * type coefficient,
+		0)
+	~	Hour
+	~		|
+
+effect of uncertain customer requirements=
+	IF THEN ELSE (type switch<>0, Random Normal (0.0047, 0.0071, 0.0059, 0.0012
+		, 0), 0)
+	~	1/Hour
+	~		|
+
+error at the end of scrum sprint or waterfall=
+	IF THEN ELSE (type switch<>2, error rate, 0)
+	~	1/Hour
+	~		|
+
+error in Kanban=
+	bug introduced during development+effect of uncertain customer requirements
+		+problem in software design
+	~	1/Hour
+	~		|
+
+error in scrum or waterfall=
+	bug introduced during development
+	~	1/Hour
+	~		|
+
+error rate=
+	ABS((effect of uncertain customer requirements+problem in software design
+		-benefits of keeping things simple-frequent release))
+	~	1/Hour
+	~		|
+
+Sprint Backlog= INTEG (
+	input-output,
+		0)
+	~	requirements
+	~		|
+
+team=
+	10
+	~	Hour
+	~		|
+
+frequent release=
+	IF THEN ELSE (type switch<>0, 0.02, 0)
+	~	1/Hour
+	~		|
+
+input=
+	IF THEN ELSE (type switch=1:AND:MODULO(Time, 84) = 0, 
+			IF THEN ELSE (Product Backlog = 210, random variable, 
+			IF THEN ELSE (Product Backlog * type coefficient > random variable, random variable
+		, Product Backlog * type coefficient )),0)
+	~	requirements/Hour
+	~		|
+
+type switch=
+	2
+	~	Dmnl
+	~	0:waterfall, 1:scrum, 2:kanban
+	|
+
+output=
+	Sprint Backlog*PULSE(delay, 1)*type coefficient
+	~	requirements/Hour
+	~		|
+
+problem in software design=
+	IF THEN ELSE (type switch<>0, Random Normal(0.001, 0.0014, 0.0012, 0.0002
+		, 0), 0)
+	~	1/Hour
+	~		|
+
+Work done= INTEG (
+	work done rate-testing rate+testing rate,
+		0)
+	~	requirements
+	~		|
+
+productivity=
+	0.025
+	~	requirements/Hour
+	~		|
+
+random variable=
+	Integer(Random Normal (15 , 21, 18, 3, 0))
+	~	requirements/Hour
+	~		|
+
+work to do during iteration=
+	rework+ Integer(Random Normal (6, 10, 8, 2, 0))
+	~	requirements/Hour
+	~		|
+
+testing delay=
+	4
+	~	Hour
+	~		|
+
+requirements in waterfall=
+	IF THEN ELSE (type switch=0:AND:Time=waterfall planning delay, 210, 0)
+	~	requirements/Hour
+	~		|
+
+rework=
+	IF THEN ELSE (type switch <> 2:AND:Selected Features<0.5, Fraction Work done
+		 * error at the end of scrum sprint or waterfall, 0)
+	~	requirements/Hour
+	~		|
+
+work done rate=
+	IF THEN ELSE (Selected Features<0.5, Fraction Work done*(1 - error at the end of scrum sprint or waterfall\
+		),0)
+	~	requirements/Hour
+	~		|
+
+scrum retrospect delay=
+	1
+	~	Hour
+	~		|
+
+Scrum sprint planning delay=
+	Integer(Random Normal (4 , 8, 6, 2, 0))
+	~	Hour
+	~		|
+
+type coefficient=
+	1
+	~	1/Hour
+	~		|
+
+work doing rate=
+	IF THEN ELSE (type switch=2, IF THEN ELSE (Selected Features > 0.05:AND:Selected Features
+		 >= productivity * team,(productivity
+			*team)*(1-error in Kanban), 
+			IF THEN ELSE ( Selected Features >0.05:AND:Selected Features < productivity
+		*team,
+			Selected Features * (1-error in Kanban), Selected Features * type coefficient
+		)),
+			IF THEN ELSE( Selected Features > 0.5:AND: Selected Features >= productivity
+		*team, (productivity*team)*(1-error in scrum or waterfall
+			), IF THEN ELSE ( Selected Features > 0.5:AND: Selected Features < productivity
+		 *team, Selected Features * (1-error in scrum or waterfall
+			), Selected Features * type coefficient)))
+	~	requirements/Hour
+	~		|
+
+waterfall planning delay=
+	120
+	~	Hour
+	~		|
+
+feature selection in kanban=
+	IF THEN ELSE (type switch=2:AND:Product Backlog>0:AND:Selected Features<0.05
+		, work to do during iteration,0)
+	~	requirements/Hour
+	~		|
+
+Fraction Work done= INTEG (
+	work doing rate-rework-work done rate,
+		0)
+	~	requirements
+	~		|
+
+Original Work To do= INTEG (
+	-requirements in kanban-requirements in Scrum-requirements in waterfall,
+		210)
+	~	requirements
+	~		|
+
+Product Backlog= INTEG (
+	requirements in kanban+requirements in Scrum-feature selection in kanban-input,
+		0)
+	~	requirements
+	~		|
+
+requirements in kanban=
+	IF THEN ELSE (type switch=2, 210*PULSE(0,1), 0)
+	~	requirements/Hour
+	~		|
+
+requirements in Scrum=
+	IF THEN ELSE (type switch=1, 210*PULSE(scrum planning delay, 1), 0)
+	~	requirements/Hour
+	~		|
+
+scrum planning delay=
+	2
+	~	Hour
+	~		|
+
+Selected Features= INTEG (
+	feature selection in kanban+output+requirements in waterfall+rework-work doing rate,
+		0)
+	~	requirements
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 2000
+	~	Hour
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Hour
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Hour [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Hour [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,90,0
+10,1,Original Work To do,305,235,60,25,3,3,0,0,-1,0,0,0
+10,2,Product Backlog,479,502,77,40,3,3,0,0,-1,0,0,0
+10,3,Selected Features,746,322,68,44,3,3,0,0,-1,0,0,0
+10,4,Sprint Backlog,797,528,45,19,3,3,0,0,-1,0,0,0
+10,5,delay,743,624,34,17,3,3,0,0,-1,0,0,0
+10,6,Fraction Work done,1264,297,61,45,3,3,0,0,-1,0,0,0
+10,7,Work done,1307,501,42,22,3,3,0,0,-1,0,0,0
+10,8,Live,1306,656,42,22,3,3,0,0,-1,0,0,0
+1,9,11,1,100,0,0,22,0,192,0,-1--1--1,,1|(255,392)|
+1,10,11,2,4,0,0,22,0,192,0,-1--1--1,,1|(332,531)|
+11,11,172,255,531,8,6,33,3,0,0,1,0,0,0
+10,12,requirements in Scrum,255,555,36,18,40,3,0,0,-1,0,0,0
+1,13,15,1,100,0,0,22,0,192,0,-1--1--1,,1|(285,319)|
+1,14,15,2,4,0,0,22,0,192,0,-1--1--1,,1|(285,502)|
+11,15,876,285,384,8,6,33,3,0,0,4,0,0,0
+10,16,requirements in kanban,342,384,49,18,40,3,0,0,-1,0,0,0
+10,17,scrum planning delay,237,630,51,18,8,3,0,0,-1,0,0,0
+1,18,17,12,0,0,0,0,0,192,0,-1--1--1,,1|(243,599)|
+1,19,21,2,100,0,0,22,0,192,0,-1--1--1,,1|(487,412)|
+1,20,21,3,4,0,0,22,0,192,0,-1--1--1,,1|(586,357)|
+11,21,892,487,357,8,6,33,3,0,0,2,0,0,0
+10,22,feature selection in kanban,436,357,43,21,40,3,0,0,-1,0,0,0
+1,23,25,1,100,0,0,22,0,192,0,-1--1--1,,1|(531,226)|
+1,24,25,3,4,0,0,22,0,192,0,-1--1--1,,1|(706,255)|
+11,25,828,706,226,8,6,33,3,0,0,4,0,0,0
+10,26,requirements in waterfall,767,226,53,19,40,3,0,0,-1,0,0,0
+10,27,waterfall planning delay,529,189,60,11,8,3,0,0,-1,0,0,0
+1,28,27,25,0,0,0,0,0,192,0,-1--1--1,,1|(632,210)|
+1,29,3,21,1,0,0,0,0,192,0,-1--1--1,,1|(585,332)|
+1,30,32,2,100,0,0,22,0,192,0,-1--1--1,,1|(596,529)|
+1,31,32,4,4,0,0,22,0,192,0,-1--1--1,,1|(700,529)|
+11,32,764,642,529,6,8,34,3,0,0,1,0,0,0
+10,33,input,642,548,40,11,40,3,0,0,-1,0,0,0
+10,34,type coefficient,686,468,41,10,8,3,0,0,-1,0,0,0
+1,35,34,32,0,0,0,0,0,192,0,-1--1--1,,1|(666,495)|
+1,36,34,5,0,0,0,0,0,192,0,-1--1--1,,1|(710,535)|
+1,37,2,32,1,0,0,0,0,192,0,-1--1--1,,1|(594,511)|
+10,38,scrum retrospect delay,639,678,45,17,8,3,0,0,-1,0,0,0
+10,39,Scrum sprint planning delay,861,615,39,20,8,3,0,0,-1,0,0,0
+10,40,random variable,831,575,44,12,8,3,0,0,-1,0,0,0
+1,41,38,5,0,0,0,0,0,192,0,-1--1--1,,1|(684,654)|
+1,42,39,5,0,0,0,0,0,192,0,-1--1--1,,1|(806,618)|
+1,43,40,32,1,0,0,0,0,192,0,-1--1--1,,1|(723,552)|
+1,44,46,4,100,0,0,22,0,192,0,-1--1--1,,1|(780,479)|
+1,45,46,3,4,0,0,22,0,192,0,-1--1--1,,1|(780,402)|
+11,46,620,780,444,8,6,33,3,0,0,4,0,0,0
+10,47,output,813,444,25,12,40,3,0,0,-1,0,0,0
+1,48,4,47,0,0,0,0,0,192,0,-1--1--1,,1|(803,489)|
+1,49,5,47,1,0,0,0,0,192,0,-1--1--1,,1|(946,565)|
+10,50,work to do during iteration,1006,501,53,19,8,3,0,0,-1,0,0,0
+1,51,50,22,1,0,0,0,0,192,0,-1--1--1,,1|(729,394)|
+10,52,error at the end of scrum sprint or waterfall,1091,444,62,19,8,3,0,0,-1,0,0,0
+1,53,55,3,100,0,0,22,0,192,0,-1--1--1,,1|(915,298)|
+1,54,55,6,4,0,0,22,0,192,0,-1--1--1,,1|(1116,298)|
+11,55,428,1023,298,6,8,34,3,0,0,1,0,0,0
+10,56,work doing rate,1023,310,42,4,40,3,0,0,-1,0,0,0
+1,57,59,6,100,0,0,22,0,192,0,-1--1--1,,1|(1109,338)|
+1,58,59,3,4,0,0,22,0,192,0,-1--1--1,,1|(909,338)|
+11,59,812,1010,338,6,8,34,3,0,0,1,0,0,0
+10,60,rework,1010,357,32,11,40,3,0,0,-1,0,0,0
+10,61,team,1112,171,35,10,8,3,0,0,-1,0,0,0
+10,62,productivity,1017,171,35,9,8,3,0,0,-1,0,0,0
+10,63,error in Kanban,898,209,51,10,8,3,0,0,-1,0,0,0
+10,64,error in scrum or waterfall,1237,221,56,18,8,3,0,0,-1,0,0,0
+1,65,63,55,0,0,0,0,0,192,0,-1--1--1,,1|(959,252)|
+1,66,62,55,0,0,0,0,0,192,0,-1--1--1,,1|(1019,229)|
+1,67,61,55,0,0,0,0,0,192,0,-1--1--1,,1|(1069,231)|
+1,68,64,55,0,0,0,0,0,192,0,-1--1--1,,1|(1114,264)|
+1,69,6,60,1,0,0,0,0,192,0,-1--1--1,,1|(1130,356)|
+1,70,3,60,1,0,0,0,0,192,0,-1--1--1,,1|(878,369)|
+1,71,52,60,0,0,0,0,0,192,0,-1--1--1,,1|(1051,401)|
+1,72,60,50,1,0,0,0,0,192,0,-1--1--1,,1|(978,425)|
+1,73,75,6,100,0,0,22,0,192,0,-1--1--1,,1|(1304,382)|
+1,74,75,7,4,0,0,22,0,192,0,-1--1--1,,1|(1304,456)|
+11,75,492,1304,428,8,6,33,3,0,0,4,0,0,0
+10,76,work done rate,1357,428,45,13,40,3,0,0,-1,0,0,0
+1,77,79,7,100,0,0,22,0,192,0,-1--1--1,,1|(1303,548)|
+1,78,79,8,4,0,0,22,0,192,0,-1--1--1,,1|(1303,610)|
+11,79,668,1303,580,8,6,33,3,0,0,4,0,0,0
+10,80,testing rate,1345,580,34,13,40,3,0,0,-1,0,0,0
+10,81,testing delay,1457,631,36,15,8,3,0,0,-1,0,0,0
+1,82,81,80,0,0,0,0,0,192,0,-1--1--1,,1|(1405,607)|
+1,83,7,80,0,0,0,0,0,192,0,-1--1--1,,1|(1324,538)|
+1,84,6,76,0,0,0,0,0,192,0,-1--1--1,,1|(1316,372)|
+1,85,3,76,1,0,0,0,0,192,0,-1--1--1,,1|(1042,474)|
+1,86,52,76,1,0,0,0,0,192,0,-1--1--1,,1|(1216,414)|
+10,87,type switch,600,411,37,10,8,3,0,0,-1,0,0,0
+1,88,87,22,0,0,0,2,0,192,0,-1--1--1,,1|(531,388)|
+1,89,87,11,1,0,0,2,0,192,0,-1--1--1,,1|(410,449)|
+1,90,87,16,0,0,0,2,0,192,0,-1--1--1,,1|(483,399)|
+1,91,87,55,1,0,0,2,0,192,0,-1--1--1,,1|(828,380)|
+1,92,87,59,1,0,0,2,0,192,0,-1--1--1,,1|(829,395)|
+1,93,87,52,0,0,0,2,0,192,0,-1--1--1,,1|(826,425)|
+10,94,Time,518,640,28,13,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,95,94,5,0,0,0,0,0,192,0,-1--1--1,,1|(620,633)|
+1,96,94,33,0,0,0,0,0,192,0,-1--1--1,,1|(575,597)|
+1,97,94,26,0,0,0,0,0,192,0,-1--1--1,,1|(636,441)|
+10,98,error rate,1146,535,42,13,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,99,98,52,0,0,0,0,0,192,0,-1--1--1,,1|(1124,498)|
+10,100,bug introduced during development,1410,175,58,36,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,101,100,64,0,0,0,0,0,192,0,-1--1--1,,1|(1329,196)|
+10,102,bug introduced during development,699,147,66,14,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,103,problem in software design,812,107,55,15,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,104,effect of uncertain customer requirements,952,92,61,19,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,105,102,63,0,0,0,0,0,192,0,-1--1--1,,1|(797,177)|
+1,106,103,63,0,0,0,0,0,192,0,-1--1--1,,1|(851,155)|
+1,107,104,63,0,0,0,0,0,192,0,-1--1--1,,1|(926,148)|
+1,108,2,21,1,0,0,0,0,192,0,-1--1--1,,1|(444,420)|
+1,109,87,25,1,0,0,2,0,192,0,-1--1--1,,1|(578,299)|
+1,110,87,32,1,0,0,2,0,192,0,-1--1--1,,1|(608,472)|
+1,111,34,47,0,0,0,0,0,192,0,-1--1--1,,1|(750,455)|
+1,112,3,55,0,0,0,0,0,192,0,-1--1--1,,1|(908,308)|
+1,113,34,55,1,0,0,0,0,192,0,-1--1--1,,1|(864,395)|
+12,114,0,605,448,65,27,8,7,0,0,-1,0,0,0
+0:waterfall, 1:scrum, 2:kanban
+1,115,8,80,0,0,0,0,0,192,0,-1--1--1,,1|(1324,619)|
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 2
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,benefits of keeping things simple,241,183,66,25,8,3,0,0,-1,0,0,0
+10,2,bug introduced during development,668,220,70,25,8,3,0,0,-1,0,0,0
+10,3,type switch,468,158,48,13,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+10,4,problem in software design,828,154,56,25,8,3,0,0,-1,0,0,0
+10,5,effect of uncertain customer requirements,566,298,62,18,8,3,0,0,-1,0,0,0
+10,6,error rate,625,405,42,22,8,3,0,0,-1,0,0,0
+10,7,frequent release,274,442,58,22,8,3,0,0,-1,0,0,0
+1,8,4,6,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,9,5,6,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,10,1,6,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,11,7,6,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,12,3,7,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,13,3,1,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,14,3,5,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+1,15,3,4,0,0,0,0,0,192,0,-1--1--1,,1|(0,0)|
+///---\\\
+:L<%^E!@
+1:kanban.vdf
+1:scrum.vdf
+1:waterfall.vdf
+9:kanban
+23:0
+15:0,0,0,0,0,0
+19:90,0
+27:0,
+34:0,
+4:Time
+5:Live
+24:0
+25:2000
+26:2000

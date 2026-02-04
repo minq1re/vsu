@@ -1,0 +1,97 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0-windows7.0": {
+      "ChessLib/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/ChessLib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ChessLib.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ChessLib/1.0.0": {
+      "type": "project",
+      "path": "../ChessLib/ChessLib.csproj",
+      "msbuildProject": "../ChessLib/ChessLib.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net8.0-windows7.0": [
+      "ChessLib >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Веточка\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\ВВП\\Семестр 6\\Инф тех\\ChessSolution\\ChessApp\\ChessApp.csproj",
+      "projectName": "ChessApp",
+      "projectPath": "D:\\ВВП\\Семестр 6\\Инф тех\\ChessSolution\\ChessApp\\ChessApp.csproj",
+      "packagesPath": "C:\\Users\\Веточка\\.nuget\\packages\\",
+      "outputPath": "D:\\ВВП\\Семестр 6\\Инф тех\\ChessSolution\\ChessApp\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Веточка\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net8.0-windows"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net8.0-windows7.0": {
+          "targetAlias": "net8.0-windows",
+          "projectReferences": {
+            "D:\\ВВП\\Семестр 6\\Инф тех\\ChessSolution\\ChessLib\\ChessLib.csproj": {
+              "projectPath": "D:\\ВВП\\Семестр 6\\Инф тех\\ChessSolution\\ChessLib\\ChessLib.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      }
+    },
+    "frameworks": {
+      "net8.0-windows7.0": {
+        "targetAlias": "net8.0-windows",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WPF": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.407/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

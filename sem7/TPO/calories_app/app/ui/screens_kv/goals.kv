@@ -1,0 +1,23 @@
+<GoalsScreen@MDScreen>:
+    name: "goals"
+    MDBoxLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            title: "Цели"
+            left_action_items: [["arrow-left", lambda x: app.goto_home()]]
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: dp(12)
+            spacing: dp(8)
+            MDTextField:
+                id: calories_goal
+                hint_text: "Цель по калориям в день"
+                input_filter: "int"
+            MDTextField:
+                id: protein_goal
+                hint_text: "Белки (г)"
+                input_filter: "int"
+            MDRaisedButton:
+                text: "Сохранить цель"
+                on_release:
+                    toast("Цель сохранена (заполнить логику)")

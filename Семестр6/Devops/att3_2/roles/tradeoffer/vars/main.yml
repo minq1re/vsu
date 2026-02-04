@@ -1,0 +1,8 @@
+#SPDX-License-Identifier: MIT-0
+---
+# vars file for roles/tradeoffer
+
+tradeoffer_repo_addr: https://gitlab.com/elizavetaloseva99/vagrant_att1.git
+tradeoffer_project_src: /usr/src/tradeoffer
+tradeoffer_cors_origin_regex: http([s])?:\/\/10\.10\.10\.30:3002
+tradeoffer_server_origin: http://10.10.10.30:3001

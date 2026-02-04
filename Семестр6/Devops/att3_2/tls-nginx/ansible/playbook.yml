@@ -1,0 +1,107 @@
+---
+- hosts: all
+  become: yes
+  vars:
+    ssl_dir: "/etc/nginx/ssl"
+    domain: "task-service.local"
+    app_port: 3002
+    country: "RU"
+    state: "VoronezhOblast"
+    locality: "Voronezh"
+    organization: "VoronezhStateUniversity"
+    organizational_unit: "CSF"
+    email: "elizavetaloseva99@gmail.com"
+
+  tasks:
+    - name: Install required packages
+      apt:
+        name: ["nginx", "openssl"]
+        state: present
+        update_cache: yes
+
+    - name: Create SSL directory
+      file:
+        path: "{{ ssl_dir }}"
+        state: directory
+        mode: 0755
+
+    - name: Generate root CA key
+      community.crypto.openssl_privatekey:
+        path: "{{ ssl_dir }}/rootCA.key"
+        size: 2048
+
+    - name: Generate root CA certificate
+      community.crypto.x509_certificate:
+        path: "{{ ssl_dir }}/rootCA.pem"
+        privatekey_path: "{{ ssl_dir }}/rootCA.key"
+        csr_path: "{{ ssl_dir }}/rootCA.csr"
+        provider: selfsigned
+        selfsigned_digest: sha256
+        selfsigned_not_after: "+1024d"
+        subject:
+          C: "{{ country }}"
+          ST: "{{ state }}"
+          L: "{{ locality }}"
+          O: "{{ organization }}"
+          OU: "{{ organizational_unit }}"
+          CN: "RootCA"
+
+    - name: Generate server private key
+      community.crypto.openssl_privatekey:
+        path: "{{ ssl_dir }}/{{ domain }}.key"
+        size: 2048
+
+    - name: Generate CSR for server certificate
+      community.crypto.x509_csr:
+        path: "{{ ssl_dir }}/{{ domain }}.csr"
+        privatekey_path: "{{ ssl_dir }}/{{ domain }}.key"
+        common_name: "{{ domain }}"
+        subject_alt_name: "DNS:{{ domain }}"
+        basic_constraints: "CA:FALSE"
+        key_usage:
+          - digitalSignature
+          - nonRepudiation
+        extended_key_usage:
+          - serverAuth
+        subject:
+          C: "{{ country }}"
+          ST: "{{ state }}"
+          L: "{{ locality }}"
+          O: "{{ organization }}"
+          OU: "{{ organizational_unit }}"
+          emailAddress: "{{ email }}"
+
+    - name: Sign server certificate
+      community.crypto.x509_certificate:
+        path: "{{ ssl_dir }}/{{ domain }}.crt"
+        csr_path: "{{ ssl_dir }}/{{ domain }}.csr"
+        ownca_path: "{{ ssl_dir }}/rootCA.pem"
+        ownca_privatekey_path: "{{ ssl_dir }}/rootCA.key"
+        provider: ownca
+        ownca_digest: sha256
+        ownca_not_after: "+365d"
+
+    - name: Configure NGINX
+      template:
+        src: "nginx.conf.j2"
+        dest: "/etc/nginx/sites-available/{{ domain }}.conf"
+      notify: Restart NGINX
+
+    - name: Enable site
+      file:
+        src: "/etc/nginx/sites-available/{{ domain }}.conf"
+        dest: "/etc/nginx/sites-enabled/{{ domain }}.conf"
+        state: link
+      notify: Restart NGINX
+
+    - name: Disable default site
+      file:
+        path: "/etc/nginx/sites-enabled/default"
+        state: absent
+      notify: Restart NGINX
+
+  handlers:
+    - name: Restart NGINX
+      service:
+        name: nginx
+        state: restarted

@@ -1,0 +1,66 @@
+---
+- name: Create SSL directory structure
+  file:
+    path: "{{ ssl_dir }}"
+    state: directory
+
+- name: Copy existing CSR config
+  copy:
+    src: "{{ playbook_dir }}/files/task-service.local.conf"
+    dest: "{{ ssl_dir }}/task-service.local.conf"
+
+- name: Generate root CA key (2048 bit)
+  community.crypto.openssl_privatekey:
+    path: "{{ ssl_dir }}/rootCA.key"
+    size: 2048
+
+- name: Generate root CA certificate
+  community.crypto.openssl_certificate:
+    path: "{{ ssl_dir }}/rootCA.pem"
+    privatekey_path: "{{ ssl_dir }}/rootCA.key"
+    csr_path: "{{ ssl_dir }}/rootCA.csr"
+    provider: selfsigned
+    selfsigned_digest: sha256
+    selfsigned_not_after: "+1024d"
+    subject:
+      C: "{{ country }}"
+      ST: "{{ state }}"
+      L: "{{ locality }}"
+      O: "{{ organization }}"
+      OU: "{{ organizational_unit }}"
+      CN: "{{ ca_common_name }}"
+
+- name: Generate server private key
+  community.crypto.openssl_privatekey:
+    path: "{{ ssl_dir }}/task-service.local.key"
+    size: 2048
+
+- name: Generate CSR for server certificate
+  community.crypto.openssl_csr:
+    path: "{{ ssl_dir }}/task-service.local.csr"
+    privatekey_path: "{{ ssl_dir }}/task-service.local.key"
+    common_name: "{{ common_name }}"
+    subject_alt_name: "DNS:{{ common_name }}"
+    basic_constraints: "CA:FALSE"
+    key_usage:
+      - digitalSignature
+      - nonRepudiation
+    extended_key_usage:
+      - serverAuth
+    subject:
+      C: "{{ country }}"
+      ST: "{{ state }}"
+      L: "{{ locality }}"
+      O: "{{ organization }}"
+      OU: "{{ server_organizational_unit }}"
+      emailAddress: "{{ email }}"
+
+- name: Sign server certificate with root CA
+  community.crypto.openssl_certificate:
+    path: "{{ ssl_dir }}/task-service.local.crt"
+    csr_path: "{{ ssl_dir }}/task-service.local.csr"
+    ownca_path: "{{ ssl_dir }}/rootCA.pem"
+    ownca_privatekey_path: "{{ ssl_dir }}/rootCA.key"
+    provider: ownca
+    ownca_digest: sha256
+    ownca_not_after: "+365d"

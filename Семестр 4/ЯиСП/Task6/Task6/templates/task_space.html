@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% include '_menu.html' %}
+
+    <h1>{{ title }} {{ task_name }}</h1>
+
+    <a>{{ description }}</a>
+
+    <table>
+        <tr>
+            <td>
+                <form action="{{ url_for('check_task', task_id=task_id) }}" method="POST">
+                    <textarea required name="prog_text"></textarea>
+                    <input type="submit" value="Отправить">
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                   <div>
+                        <h3>Загрузка файла</h3>
+                        <form action = "{{ url_for('check_task_file', task_id=task_id) }}"  method = "POST"
+                            enctype = "multipart/form-data">
+                    <input type="file" name="file">
+                    <input type="Submit" value="Загрузить">
+                    </form>
+                    </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a>{{ status }}</a>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

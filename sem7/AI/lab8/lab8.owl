@@ -1,0 +1,488 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/веточка/ontologies/2025/10/untitled-ontology-6"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.semanticweb.org/веточка/ontologies/2025/10/untitled-ontology-6">
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Declaration>
+        <Class IRI="#Вагон"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Вокзал"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ГрузовойВагон"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ЖелезнодорожнаяИнфраструктура"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ЖелезнодорожныйПодвижнойСостав"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Локомотив"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Машинист"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ОстановочныйПункт"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#ПассажирскийВагон"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Поезд"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Проводник"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Путь"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Сотрудник"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Станция"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Тепловоз"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#Электровоз"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#имеетТипВагона"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#имеетТипЛокомотива"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#приписанКСтанции"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#работаетНа"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#следуетПоМаршруту"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#управляетсяКем"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#имеетГодВыпуска"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#имеетГрузоподъемность"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#имеетКоличествоМест"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#имеетМаксимальнуюСкорость"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#имеетНазвание"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#имеетНомерПоезда"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#имеетРегистрационныйНомер"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#имеетТабельныйНомер"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#имеетФИО"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ВЛ80_123"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Вагон_Купе_101"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Вагон_Плацкарт_202"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Иванов_Петр_Сергеевич"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Москва-Киевская"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Поезд_025А"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Санкт-Петербург-Главный"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#Сидоров_Алексей_Викторович"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#ЧС4-567"/>
+    </Declaration>
+    <SubClassOf>
+        <Class IRI="#Вагон"/>
+        <Class IRI="#ЖелезнодорожныйПодвижнойСостав"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Вокзал"/>
+        <Class IRI="#Станция"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ГрузовойВагон"/>
+        <Class IRI="#Вагон"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Локомотив"/>
+        <Class IRI="#ЖелезнодорожныйПодвижнойСостав"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Машинист"/>
+        <Class IRI="#Сотрудник"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ОстановочныйПункт"/>
+        <Class IRI="#Станция"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#ПассажирскийВагон"/>
+        <Class IRI="#Вагон"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Проводник"/>
+        <Class IRI="#Сотрудник"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Путь"/>
+        <Class IRI="#ЖелезнодорожнаяИнфраструктура"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Станция"/>
+        <Class IRI="#ЖелезнодорожнаяИнфраструктура"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Тепловоз"/>
+        <Class IRI="#Локомотив"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#Электровоз"/>
+        <Class IRI="#Локомотив"/>
+    </SubClassOf>
+    <ClassAssertion>
+        <Class IRI="#Электровоз"/>
+        <NamedIndividual IRI="#ВЛ80_123"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ПассажирскийВагон"/>
+        <NamedIndividual IRI="#Вагон_Купе_101"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#ПассажирскийВагон"/>
+        <NamedIndividual IRI="#Вагон_Плацкарт_202"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Машинист"/>
+        <NamedIndividual IRI="#Иванов_Петр_Сергеевич"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Вокзал"/>
+        <NamedIndividual IRI="#Москва-Киевская"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Поезд"/>
+        <NamedIndividual IRI="#Поезд_025А"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Вокзал"/>
+        <NamedIndividual IRI="#Санкт-Петербург-Главный"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Машинист"/>
+        <NamedIndividual IRI="#Сидоров_Алексей_Викторович"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="#Электровоз"/>
+        <NamedIndividual IRI="#ЧС4-567"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#приписанКСтанции"/>
+        <NamedIndividual IRI="#ВЛ80_123"/>
+        <NamedIndividual IRI="#Москва-Киевская"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#управляетсяКем"/>
+        <NamedIndividual IRI="#ВЛ80_123"/>
+        <NamedIndividual IRI="#Иванов_Петр_Сергеевич"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#приписанКСтанции"/>
+        <NamedIndividual IRI="#Вагон_Купе_101"/>
+        <NamedIndividual IRI="#Москва-Киевская"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#приписанКСтанции"/>
+        <NamedIndividual IRI="#Вагон_Плацкарт_202"/>
+        <NamedIndividual IRI="#Москва-Киевская"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#работаетНа"/>
+        <NamedIndividual IRI="#Иванов_Петр_Сергеевич"/>
+        <NamedIndividual IRI="#Москва-Киевская"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#работаетНа"/>
+        <NamedIndividual IRI="#Сидоров_Алексей_Викторович"/>
+        <NamedIndividual IRI="#Санкт-Петербург-Главный"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#приписанКСтанции"/>
+        <NamedIndividual IRI="#ЧС4-567"/>
+        <NamedIndividual IRI="#Санкт-Петербург-Главный"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty IRI="#управляетсяКем"/>
+        <NamedIndividual IRI="#ЧС4-567"/>
+        <NamedIndividual IRI="#Сидоров_Алексей_Викторович"/>
+    </ObjectPropertyAssertion>
+    <NegativeObjectPropertyAssertion>
+        <ObjectProperty IRI="#имеетТипВагона"/>
+        <NamedIndividual IRI="#Поезд_025А"/>
+        <NamedIndividual IRI="#Вагон_Купе_101"/>
+    </NegativeObjectPropertyAssertion>
+    <NegativeObjectPropertyAssertion>
+        <ObjectProperty IRI="#имеетТипВагона"/>
+        <NamedIndividual IRI="#Поезд_025А"/>
+        <NamedIndividual IRI="#Вагон_Плацкарт_202"/>
+    </NegativeObjectPropertyAssertion>
+    <NegativeObjectPropertyAssertion>
+        <ObjectProperty IRI="#имеетТипЛокомотива"/>
+        <NamedIndividual IRI="#Поезд_025А"/>
+        <NamedIndividual IRI="#ВЛ80_123"/>
+    </NegativeObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетГодВыпуска"/>
+        <NamedIndividual IRI="#ВЛ80_123"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1985</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетМаксимальнуюСкорость"/>
+        <NamedIndividual IRI="#ВЛ80_123"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">110</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетРегистрационныйНомер"/>
+        <NamedIndividual IRI="#ВЛ80_123"/>
+        <Literal>80-123</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетГодВыпуска"/>
+        <NamedIndividual IRI="#Вагон_Купе_101"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2010</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетКоличествоМест"/>
+        <NamedIndividual IRI="#Вагон_Купе_101"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">36</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетРегистрационныйНомер"/>
+        <NamedIndividual IRI="#Вагон_Купе_101"/>
+        <Literal>ВА-101</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетГодВыпуска"/>
+        <NamedIndividual IRI="#Вагон_Плацкарт_202"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">2015</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетКоличествоМест"/>
+        <NamedIndividual IRI="#Вагон_Плацкарт_202"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">54</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетРегистрационныйНомер"/>
+        <NamedIndividual IRI="#Вагон_Плацкарт_202"/>
+        <Literal>ВА-202</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетТабельныйНомер"/>
+        <NamedIndividual IRI="#Иванов_Петр_Сергеевич"/>
+        <Literal>Т-001</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетФИО"/>
+        <NamedIndividual IRI="#Иванов_Петр_Сергеевич"/>
+        <Literal>Иванов Петр Сергеевич</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетНазвание"/>
+        <NamedIndividual IRI="#Москва-Киевская"/>
+        <Literal>Вокзал Москва_Киевская</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетНазвание"/>
+        <NamedIndividual IRI="#Санкт-Петербург-Главный"/>
+        <Literal>Вокзал Санкт-Петербург-Главный</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетТабельныйНомер"/>
+        <NamedIndividual IRI="#Сидоров_Алексей_Викторович"/>
+        <Literal>Т-002</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетФИО"/>
+        <NamedIndividual IRI="#Сидоров_Алексей_Викторович"/>
+        <Literal>Сидоров Алексей Викторович</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетГодВыпуска"/>
+        <NamedIndividual IRI="#ЧС4-567"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">1978</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетМаксимальнуюСкорость"/>
+        <NamedIndividual IRI="#ЧС4-567"/>
+        <Literal datatypeIRI="http://www.w3.org/2001/XMLSchema#integer">160</Literal>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty IRI="#имеетРегистрационныйНомер"/>
+        <NamedIndividual IRI="#ЧС4-567"/>
+        <Literal>ЧС4-567</Literal>
+    </DataPropertyAssertion>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#имеетТипВагона"/>
+        <Class IRI="#Поезд"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#имеетТипЛокомотива"/>
+        <Class IRI="#Поезд"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#приписанКСтанции"/>
+        <Class IRI="#Вагон"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#приписанКСтанции"/>
+        <Class IRI="#Локомотив"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#работаетНа"/>
+        <Class IRI="#Сотрудник"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#следуетПоМаршруту"/>
+        <Class IRI="#Поезд"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#управляетсяКем"/>
+        <Class IRI="#Локомотив"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#имеетТипВагона"/>
+        <Class IRI="#Вагон"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#имеетТипЛокомотива"/>
+        <Class IRI="#Локомотив"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#приписанКСтанции"/>
+        <Class IRI="#Станция"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#работаетНа"/>
+        <Class IRI="#Станция"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#следуетПоМаршруту"/>
+        <Class IRI="#Путь"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#управляетсяКем"/>
+        <Class IRI="#Машинист"/>
+    </ObjectPropertyRange>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетГодВыпуска"/>
+        <Class IRI="#ЖелезнодорожныйПодвижнойСостав"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетГрузоподъемность"/>
+        <Class IRI="#ГрузовойВагон"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетКоличествоМест"/>
+        <Class IRI="#ПассажирскийВагон"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетМаксимальнуюСкорость"/>
+        <Class IRI="#Локомотив"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетНазвание"/>
+        <Class IRI="#Станция"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетНомерПоезда"/>
+        <Class IRI="#Поезд"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетРегистрационныйНомер"/>
+        <Class IRI="#ЖелезнодорожныйПодвижнойСостав"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетТабельныйНомер"/>
+        <Class IRI="#Сотрудник"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#имеетФИО"/>
+        <Class IRI="#Сотрудник"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#имеетГодВыпуска"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#имеетГрузоподъемность"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#имеетКоличествоМест"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#имеетМаксимальнуюСкорость"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#имеетНазвание"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#имеетРегистрационныйНомер"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#имеетТабельныйНомер"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#имеетФИО"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

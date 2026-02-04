@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  connection: local
+  vars:
+    ssl_dir: "../ssl"
+    country: RU
+    state: VoronezhOblast
+    locality: Voronezh
+    organization: VoronezhStateUniversity
+    organizational_unit: CSF
+    server_organizational_unit: Student
+    email: danvoropaeff@yandex.ru
+    common_name: task-service.local
+    ca_common_name: CSFCA
+  roles:
+    - role: tls_cert

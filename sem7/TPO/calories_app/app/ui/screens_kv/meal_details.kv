@@ -1,0 +1,28 @@
+<MealDetailsScreen@MDScreen>:
+    name: "meal_details"
+    MDBoxLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            title: "Детали приёма"
+            left_action_items: [["arrow-left", lambda x: app.goto_meals()]]
+        ScrollView:
+            MDList:
+                id: products_list
+        MDBoxLayout:
+            size_hint_y: None
+            height: dp(64)
+            padding: dp(8)
+            spacing: dp(8)
+            MDTextField:
+                id: input_product
+                hint_text: "Название продукта"
+            MDTextField:
+                id: input_amount
+                hint_text: "Граммы"
+                input_filter: "float"
+            MDRaisedButton:
+                text: "Добавить"
+                on_release:
+                    # ожидание: у meal_list_id есть конкретный id в screen.current_meal_id
+                    app.add_product_to_meal_ui(getattr(root.get_screen('meal_details'), 'current_meal_id', None) or 0, input_product.text, float(input_amount.text) if input_amount.text else 0)
+                    # обновление экрана будет сделано при следующем открытии

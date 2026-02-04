@@ -1,0 +1,54 @@
+# SPDX-License-Identifier: MIT-0
+# tasks file for roles/nginx
+- name: Установить nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+
+- name: Создать каталог для сертификатов
+  file:
+    path: /etc/nginx/ssl
+    state: directory
+    mode: '0755'
+
+- name: Копировать ключ
+  copy:
+    src: task-service.local.key
+    dest: /etc/nginx/ssl/task-service.local.key
+    mode: '0640'
+
+- name: Копировать сертификат
+  copy:
+    src: task-service.local.crt
+    dest: /etc/nginx/ssl/task-service.local.crt
+    mode: '0644'
+
+- name: Копировать конфиг NGINX
+  template:
+    src: templates/nginx-site.conf.j2
+    dest: /etc/nginx/sites-available/task-service.conf
+    mode: '0644'
+  notify: Перезапуск nginx
+
+- name: Активировать сайт
+  file:
+    src: /etc/nginx/sites-available/task-service.conf
+    dest: /etc/nginx/sites-enabled/task-service.conf
+    state: link
+    force: yes
+  notify: Перезапуск nginx
+
+- name: Удалить дефолтный сайт
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+  notify: Перезапуск nginx
+
+- meta: flush_handlers
+
+- name: Проверить конфигурацию NGINX
+  command: nginx -t
+  register: nginx_test
+  changed_when: false
+  notify: Перезапуск nginx

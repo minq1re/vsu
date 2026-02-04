@@ -1,0 +1,43 @@
+#:import dp kivy.metrics.dp
+<LoginScreen@MDScreen>:
+    name: "login"
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(12)
+
+        MDLabel:
+            text: "Calories Tracker"
+            font_style: "H4"
+            halign: "center"
+
+        MDTextField:
+            id: email
+            hint_text: "Email"
+            helper_text_mode: "on_focus"
+            required: True
+
+        MDTextField:
+            id: password
+            hint_text: "Пароль"
+            password: True
+            required: True
+
+        MDRaisedButton:
+            text: "Войти"
+            on_release:
+                app.login(email.text, password.text)
+
+        MDTextButton:
+            text: "Зарегистрироваться"
+            on_release:
+                app.register(email.text, password.text)
+
+        Widget:
+            size_hint_y: None
+            height: dp(20)
+
+        MDLabel:
+            text: "ТЗ: " + (app.__dict__.get('user_id') and 'выполнено' or 'не в системе')
+            halign: "center"
+            theme_text_color: "Secondary"

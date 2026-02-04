@@ -1,0 +1,18 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/tradeoffer
+
+- name: Clone repo from git
+  ansible.builtin.git:
+    repo: "{{ tradeoffer_repo_addr }}"
+    dest: "{{ tradeoffer_project_src }}"
+
+- name: Start docker compose
+  community.docker.docker_compose_v2:
+    project_src: "{{ tradeoffer_project_src }}"
+    build: always
+    state: present
+  environment:
+    CORS_ORIGIN_REGEX: "{{ tradeoffer_cors_origin_regex }}"
+    SERVER_ORIGIN: "{{ tradeoffer_server_origin }}"
+

@@ -1,0 +1,40 @@
+<MealsScreen@MDScreen>:
+    name: "meals"
+    MDBoxLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            title: "Приёмы пищи"
+            left_action_items: [["arrow-left", lambda x: app.goto_home()]]
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: dp(8)
+            spacing: dp(6)
+            MDList:
+                OneLineAvatarListItem:
+                    text: "Завтрак"
+                    on_release: app.open_meal(meal_type=0)
+                    IconLeftWidget:
+                        icon: "bread-slice"
+                OneLineAvatarListItem:
+                    text: "Обед"
+                    on_release: app.open_meal(meal_type=1)
+                    IconLeftWidget:
+                        icon: "silverware-fork-knife"
+                OneLineAvatarListItem:
+                    text: "Ужин"
+                    on_release: app.open_meal(meal_type=2)
+                    IconLeftWidget:
+                        icon: "food-apple"
+                OneLineAvatarListItem:
+                    text: "Перекус"
+                    on_release: app.open_meal(meal_type=3)
+                    IconLeftWidget:
+                        icon: "coffee"
+            Widget:
+                size_hint_y: None
+                height: dp(12)
+            MDRaisedButton:
+                text: "Создать пустой список на сегодня"
+                on_release:
+                    app.create_empty_meal(app.root.get_screen('home').ids and '2024-01-01' or '2024-01-01')
+                    toast("Создано")

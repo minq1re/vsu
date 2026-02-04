@@ -1,0 +1,10 @@
+<RecommendationsScreen@MDScreen>:
+    name: "recommendations"
+    MDBoxLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            title: "Рекомендации"
+            left_action_items: [["arrow-left", lambda x: app.goto_home()]]
+        MDLabel:
+            text: "Рекомендации будут сгенерированы на основе истории"
+            halign: "center"

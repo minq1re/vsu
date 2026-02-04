@@ -1,0 +1,11 @@
+D:\ВВП\Семестр 6\Инф тех\ChessSolution\ClassLib\bin\Debug\net8.0\ClassLib.deps.json
+D:\ВВП\Семестр 6\Инф тех\ChessSolution\ClassLib\bin\Debug\net8.0\ClassLib.dll
+D:\ВВП\Семестр 6\Инф тех\ChessSolution\ClassLib\bin\Debug\net8.0\ClassLib.pdb
+D:\ВВП\Семестр 6\Инф тех\ChessSolution\ClassLib\obj\Debug\net8.0\ClassLib.GeneratedMSBuildEditorConfig.editorconfig
+D:\ВВП\Семестр 6\Инф тех\ChessSolution\ClassLib\obj\Debug\net8.0\ClassLib.AssemblyInfoInputs.cache
+D:\ВВП\Семестр 6\Инф тех\ChessSolution\ClassLib\obj\Debug\net8.0\ClassLib.AssemblyInfo.cs
+D:\ВВП\Семестр 6\Инф тех\ChessSolution\ClassLib\obj\Debug\net8.0\ClassLib.csproj.CoreCompileInputs.cache
+D:\ВВП\Семестр 6\Инф тех\ChessSolution\ClassLib\obj\Debug\net8.0\ClassLib.dll
+D:\ВВП\Семестр 6\Инф тех\ChessSolution\ClassLib\obj\Debug\net8.0\refint\ClassLib.dll
+D:\ВВП\Семестр 6\Инф тех\ChessSolution\ClassLib\obj\Debug\net8.0\ClassLib.pdb
+D:\ВВП\Семестр 6\Инф тех\ChessSolution\ClassLib\obj\Debug\net8.0\ref\ClassLib.dll

@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.34'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.34'
+    runtimeOnly 'org.postgresql:postgresql:42.7.2'
+    compileOnly group: 'jakarta.servlet', name: 'jakarta.servlet-api', version: '6.1.0'
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.11.0'
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'org.slf4j:slf4j-simple:2.0.16'
+}
+
+war {
+    archiveFileName = 'warehouse.war'
+    destinationDirectory = file("$buildDir/libs")
+}
+test {
+    useJUnitPlatform()
+}
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}

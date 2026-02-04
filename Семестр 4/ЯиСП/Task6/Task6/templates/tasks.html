@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% include '_menu.html' %}
+
+    <h1>{{ title }}</h1>
+
+    <table>
+        <tr>
+            <td><a >Задание</a></td>
+            <td><a >Краткое описание</a></td>
+        </tr>
+    {% for task in tasks %}
+        <tr>
+            <td><a href="{{ url_for('task_space', task_id=task.task_id) }}">{{ task.name }}</a></td>
+            <td><a >{{ task.description[0:20] }}...</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+</body>
+</html>

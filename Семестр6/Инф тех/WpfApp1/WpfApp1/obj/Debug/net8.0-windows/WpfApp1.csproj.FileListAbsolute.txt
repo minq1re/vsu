@@ -1,0 +1,44 @@
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1_MarkupCompile.cache
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1_MarkupCompile.lref
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\bin\Debug\net8.0-windows\WpfApp1.exe
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\bin\Debug\net8.0-windows\WpfApp1.deps.json
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\bin\Debug\net8.0-windows\WpfApp1.runtimeconfig.json
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\bin\Debug\net8.0-windows\WpfApp1.dll
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\bin\Debug\net8.0-windows\WpfApp1.pdb
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\App.baml
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.g.resources
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.AssemblyInfoInputs.cache
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.AssemblyInfo.cs
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.csproj.CoreCompileInputs.cache
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.dll
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\refint\WpfApp1.dll
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.pdb
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.genruntimeconfig.cache
+C:\Users\ксения\RiderProjects\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\ref\WpfApp1.dll
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\bin\Debug\net8.0-windows\WpfApp1.exe
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\bin\Debug\net8.0-windows\WpfApp1.deps.json
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\bin\Debug\net8.0-windows\WpfApp1.runtimeconfig.json
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\bin\Debug\net8.0-windows\WpfApp1.dll
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\bin\Debug\net8.0-windows\WpfApp1.pdb
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\MainWindow.g.cs
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\App.g.cs
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1_MarkupCompile.cache
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1_MarkupCompile.lref
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\App.baml
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\MainWindow.baml
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.g.resources
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.GeneratedMSBuildEditorConfig.editorconfig
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.AssemblyInfoInputs.cache
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.AssemblyInfo.cs
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.csproj.CoreCompileInputs.cache
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.dll
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\refint\WpfApp1.dll
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.pdb
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\WpfApp1.genruntimeconfig.cache
+D:\ВВП\Семестр 6\Инф тех\WpfApp1\WpfApp1\obj\Debug\net8.0-windows\ref\WpfApp1.dll

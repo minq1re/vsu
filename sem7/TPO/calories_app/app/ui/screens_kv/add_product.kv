@@ -1,0 +1,23 @@
+<AddProductScreen@MDScreen>:
+    name: "add_product"
+    MDBoxLayout:
+        orientation: "vertical"
+        MDTopAppBar:
+            title: "Добавить продукт"
+            left_action_items: [["arrow-left", lambda x: app.goto_meals()]]
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: dp(12)
+            spacing: dp(8)
+            MDTextField:
+                id: prod_name
+                hint_text: "Название"
+            MDTextField:
+                id: prod_cal
+                hint_text: "Калории на 100 г"
+                input_filter: "float"
+            MDRaisedButton:
+                text: "Создать продукт"
+                on_release:
+                    app.add_product_to_meal_ui(0, prod_name.text, 100)
+                    app.goto_meals()
